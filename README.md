@@ -44,3 +44,75 @@ You should now be connected to the mysql client for your database.
  - run `SHOW TABLES` to see the table you created.
 
 Quit the bash shell for `db` with `cntrl+d`.
+
+
+# How I made this project
+
+
+ - `mkdir DockerMySQL && cd DockerMySQL && git init && git remote add origin ...` - make new git repo
+ - `python -m django startproject DockerMySQL` - django init new project
+
+
+### Add `Dockerfile`
+
+```
+FROM python:3.6
+ENV PYTHONUNBUFFERED 1
+
+RUN pip install --upgrade pip
+
+COPY ./requirements.txt /requirements.txt
+RUN pip install -r /requirements.txt
+
+RUN mkdir /DockerMySQL
+WORKDIR /DockerMySQL
+COPY ./DockerMySQL /DockerMySQL
+```
+
+### Add `docker-compose.yml`
+
+```
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+       MYSQL_DATABASE: 'my-app-db'
+       MYSQL_ROOT_PASSWORD: 'password'
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./DockerMySQL:/DockerMySQL
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+```
+
+### Add `requirements.txt`
+
+```
+Django==1.11.5
+mysqlclient==1.3.12
+django-mysql==2.2.0
+```
+
+### In `settings.py` add `DATABASE` variable
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'my-app-db',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': '192.168.1.97',
+        'PORT': 3306,
+    }
+}
+```
