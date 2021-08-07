@@ -117,3 +117,18 @@ DATABASES = {
     }
 }
 ```
+
+### Remove the default `DATABASES` variable
+
+[View the commit here](https://github.com/JamesDHW/docker-django-mysql/commit/89ede0086036726c9798a8c01b1093e2452e89d3)
+
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+```
+
