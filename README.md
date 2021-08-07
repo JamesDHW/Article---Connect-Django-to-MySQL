@@ -8,8 +8,9 @@
  
 ## Build and run the container
 
- - run `docker-compose build`.
+ - run `docker-compose build` to build the container.
  - run `docker-compose up -d` to run the container as a daemon.
+ - go to `localhost:8000` and see a basic Django page.
 
 ## Run the `web` service
 
