@@ -1,5 +1,11 @@
 # Docker + Django + MySQL
 
+## Clone the repo
+
+ - `cd user/Github` (or wherever)
+ - `git clone https://github.com/JamesDHW/docker-django-mysql.git`
+ - `cd docker-django-mysql`
+ 
 ## Build and run the container
 
  - run `docker-compose build`.
