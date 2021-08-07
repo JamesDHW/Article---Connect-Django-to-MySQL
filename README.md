@@ -102,7 +102,7 @@ mysqlclient==1.3.12
 django-mysql==2.2.0
 ```
 
-### In `settings.py` add `DATABASE` variable
+### In `settings.py` add `DATABASES` variable
 
 ```
 DATABASES = {
