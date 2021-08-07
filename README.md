@@ -112,7 +112,7 @@ DATABASES = {
         'NAME': 'my-app-db',
         'USER': 'root',
         'PASSWORD': 'password',
-        'HOST': '192.168.1.97',
+        'HOST': '192.168.1.97', <-- I think this might be wrong now but if it works 🤷‍♂️
         'PORT': 3306,
     }
 }
